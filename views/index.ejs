@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Home</title>
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+</head>
+<body>
+    <h1>Index page</h1>
+    <p>this is the index page</p>
+    <p id="distance_value"></p>
+    <script>
+        function onRecieveDist(){
+            $.ajax({
+              url: '/getDistance',
+              method: 'GET',
+              success: function(results){
+                    var dataDistance = results.data;
+                    document.getElementById('distance_value').innerHTML = dataDistance + "%";
+              }
+            });
+        }
+        
+        setInterval(function(){ 
+            onRecieveDist();
+        }, 5000);
+    </script>
+</body>
+</html>

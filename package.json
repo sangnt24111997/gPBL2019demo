@@ -1,0 +1,25 @@
+{
+  "name": "gpbl_demo1",
+  "version": "1.0.0",
+  "description": "simple demo of web server",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "IoT",
+    "NodeJS",
+    "JavaScript",
+    "Google",
+    "API"
+  ],
+  "author": "Sang, Nguyen Tan",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "ejs": "^2.7.1",
+    "express": "^4.17.1",
+    "http-server": "^0.11.1",
+    "localtunnel": "^1.9.2"
+  }
+}
