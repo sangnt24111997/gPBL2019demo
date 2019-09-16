@@ -18,12 +18,12 @@
               method: 'GET',
               success: function(results){
                     var dataDistance = results.data;
-                    document.getElementById('distance_value').innerHTML = dataDistance + "%";
+                    document.getElementById('distance_value').innerHTML = dataDistance + "cm";
               }
             });
         }
 
-        setInterval(function(){ onRecieveDist();}, 5000);
+        setInterval(function(){ onRecieveDist();}, 1000);
     </script>
 </body>
 </html>
