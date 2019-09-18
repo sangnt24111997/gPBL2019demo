@@ -9,6 +9,7 @@
     <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0/dist/Chart.min.js"></script>
     <link rel="stylesheet" href="/css/dashboard.css">
     <style>
       .bd-placeholder-img {
@@ -44,9 +45,9 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">
+                    <a class="nav-link" href="/list">
                     <span data-feather="file"></span>
-                    About
+                    List
                     </a>
                 </li>
                 </ul>
@@ -59,21 +60,45 @@
             <div class="container">
                 <div class="row">
                     <div class="col-sm-8">
+                        <h4>Progress:</h4>
                         <div class="progress">
                             <div class="progress-bar progress-bar-striped bg-success" role="progressbar" style="width: 0%" aria-valuenow="10" aria-valuemin="0" aria-valuemax="100"></div>
                         </div>
-                    </div>
-                    <div class="col-sm-4">
-                        <p>The recent status:</p>
-                        <p id="distance_value"></p>
-                        <p id="percentage"></p>
+                        <p id="percentage" style="font-size:24px; font-family: sans-serif"></p>
+                        <div>
+                            <h4>Status</h4>
+                            <p id="distance_value"></p>
+                        </div>
                     </div>
                 </div>
+                <hr>
+                <div>
+                    <h4>Last 5 colleted distances</h4>
+                    <%if(distances){%>
+                        <table class="table table-bordered">
+                            <thead>
+                                <th>ID</th>
+                                <th>Distance</th>
+                                <th>Timestamp</th>
+                            </thead>
+                            <tbody id="table-body">
+                                <% distances.forEach(function(distance){ %>
+                                <tr>
+                                    <td><%= distance._id %></td>
+                                    <td><%= distance.distance %></td>
+                                    <td><%= distance.created %></td>
+                                </tr>
+                                <% }); %>
+                            </tbody>
+                        </table>
+                    <% }else{ %>
+                        <p>There is no information</p>
+                    <%}%>
+                </div>
             </div>
-            
             </main>
         </div>
-        </div>
+    </div>
     <script>
         function onRecieveDist(){
             $.ajax({
@@ -100,11 +125,20 @@
                         $('.progress-bar').removeClass('bg-success bg-info bg-warning bg-danger');
                         $('.progress-bar').addClass('bg-danger');
                     }
-              }
+
+                    $('#table-body').empty();
+                    for( var i = 0 ; i < results.lsDistances.length; i++){
+                        $('#table-body').append(
+                            '<tr>'+
+                                '<td>' + results.lsDistances[i]._id+ '</td>' +
+                                '<td>' + results.lsDistances[i].distance+ '</td>' +
+                                '<td>' + results.lsDistances[i].created+ '</td>' +
+                            '</tr>');
+                    }
+                }
             });
         }
-
-        setInterval(function(){ onRecieveDist();}, 3500);
+        setInterval(function(){ onRecieveDist();}, 5000);
     </script>
 </body>
 </html>
