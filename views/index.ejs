@@ -38,18 +38,12 @@
             <nav class="col-md-2 d-none d-md-block bg-light sidebar">
             <div class="sidebar-sticky">
                 <ul class="nav flex-column">
-                <li class="nav-item">
-                    <a class="nav-link active" href="/">
-                    <span data-feather="home"></span>
-                    Dashboard <span class="sr-only">(current)</span>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="/list">
-                    <span data-feather="file"></span>
-                    List
-                    </a>
-                </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="/">
+                        <span data-feather="home"></span>
+                        Dashboard <span class="sr-only">(current)</span>
+                        </a>
+                    </li>
                 </ul>
             </div>
             </nav>
@@ -67,6 +61,7 @@
                         <p id="percentage" style="font-size:24px; font-family: sans-serif"></p>
                         <div>
                             <h4>Status</h4>
+                            <p>Distance from sensor to the trash surface:</p>
                             <p id="distance_value"></p>
                         </div>
                     </div>
@@ -78,7 +73,7 @@
                         <table class="table table-bordered">
                             <thead>
                                 <th>ID</th>
-                                <th>Distance</th>
+                                <th>Trash Height</th>
                                 <th>Timestamp</th>
                             </thead>
                             <tbody id="table-body">

@@ -2,7 +2,7 @@ const mailservice = require('../services/mailservice');
 var mongoose = require('../services/dbconnect');
 var Distances = require('../models/distances');
 
-const bin_height = 100;
+const bin_height = 15;
 var gdist = bin_height;
 module.exports = function(app){
     app.get('/', async (req, res, next)=>{
